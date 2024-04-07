@@ -6,15 +6,14 @@ extends Panel
 @onready var icon_rect: TextureRect = $M/V2/TextureRect
 @onready var price_label: Label = $M/V2/HBoxContainer/ScoreLabel
 
+
+
 @export var icon_modulate: Color = Color.WHITE:
 	set(v):
 		icon_modulate = v
 		if(icon_rect == null): return
 		icon_rect.modulate = icon_modulate
-@export var enabled: bool = false:
-	set(v):
-		enabled = v
-		modulate =  Color.WHITE if enabled else Color.GRAY
+
 @export var icon: Texture2D:
 	set(v):
 		icon = v
@@ -47,6 +46,27 @@ extends Panel
 			else:
 				description = "+%s при клике." % Utils.beautify_number(clickBonus)
 
+var enabled: bool = false:
+	set(v):
+		enabled = v
+		handleVisiblity()
+var opened: bool = true:
+	set(v):
+		opened = v
+		handleVisiblity()
+
+func handleVisiblity():
+	modulate = Color.WHITE if enabled else Color.GRAY
+	if(!opened):
+		name_label.text = "???"
+		desc_label.text = "???"
+		icon_rect.modulate = Color.BLACK
+		price_label.text = "???"
+	else:
+		if(icon_rect != null):
+			icon_rect.modulate = Color.WHITE
+		refreshUI()
+
 func _enter_tree() -> void:
 	if !Engine.is_editor_hint(): return 
 	refreshUI()
@@ -56,7 +76,11 @@ func _ready() -> void:
 	refreshUI()
 	
 func refresh():
+	opened = get_index() <= UserService.instance.lastOpenedShop
 	enabled = UserService.instance.money >= price
+	if(enabled && !opened):
+		UserService.instance.lastOpenedShop = max(UserService.instance.lastOpenedShop, get_index())
+		opened = true
 	
 func refreshUI():
 	name_label.text = Name

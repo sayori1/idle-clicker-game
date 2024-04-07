@@ -44,6 +44,8 @@ var money = 0:
 		update.emit()
 		
 
+var lastOpenedShop = 2
+
 func _ready() -> void:
 	instance = self
 	while(true):

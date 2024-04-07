@@ -15,6 +15,7 @@ var center: Vector2:
 		return center
 		
 
+
 func _gui_input(event: InputEvent) -> void:
 	if(event is InputEventMouseButton):
 		if(!event.is_echo() && event.is_pressed()):
