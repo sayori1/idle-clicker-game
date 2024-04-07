@@ -11,30 +11,25 @@ extends Panel
 		icon_modulate = v
 		if(icon_rect == null): return
 		icon_rect.modulate = icon_modulate
-
 @export var enabled: bool = false:
 	set(v):
 		enabled = v
 		modulate =  Color.WHITE if enabled else Color.GRAY
-		
 @export var icon: Texture2D:
 	set(v):
 		icon = v
 		if(icon_rect == null): return
 		icon_rect.texture = icon
-		
 @export var Name: String:
 	set(v):
 		Name = v
 		if(name_label == null): return
 		name_label.text = Name
-
 @export var description: String:
 	set(v):
 		description = v
 		if(desc_label == null): return
 		desc_label.text = v
-
 @export var price: int = 0:
 	set(v):
 		price = v
