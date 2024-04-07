@@ -62,4 +62,4 @@ func check_level_up():
 		xp_needed_for_next_level = calculate_xp_for_next_level(level)
 
 func calculate_xp_for_next_level(level: int) -> int:
-	return int(10 * pow(2, level - 1))
+	return int(10 * pow(4, level - 1))

@@ -1,11 +1,9 @@
-[gd_scene load_steps=32 format=3 uid="uid://de83uvp1ygta7"]
+[gd_scene load_steps=33 format=3 uid="uid://de83uvp1ygta7"]
 
 [ext_resource type="Texture2D" uid="uid://djipho6kgc20r" path="res://BG.png" id="1_jm8yv"]
-[ext_resource type="Texture2D" uid="uid://c3euqb8d6ttlc" path="res://module/clickable/images/radial.png" id="2_givnv"]
 [ext_resource type="Texture2D" uid="uid://drq13pgryess8" path="res://module/clickable/images/evolution/0.png" id="2_gjx1p"]
 [ext_resource type="Texture2D" uid="uid://ol0fpgj1gcuj" path="res://module/clickable/images/shadow.png" id="3_dkvsd"]
 [ext_resource type="Script" path="res://module/clickable/scripts/egg.gd" id="4_p6chl"]
-[ext_resource type="Script" path="res://scripts/radial.gd" id="5_be51r"]
 [ext_resource type="AudioStream" uid="uid://dbgcpelfvdwpd" path="res://module/clickable/audio/click.ogg" id="7_unjn1"]
 [ext_resource type="FontFile" uid="uid://bodqko384yack" path="res://fonts/Nunito-SemiBold.ttf" id="8_rr8fu"]
 [ext_resource type="Texture2D" uid="uid://bnpv7ocwxg3dq" path="res://images/ExportedIcons/Item2.png" id="9_41ndx"]
@@ -18,9 +16,12 @@
 [ext_resource type="Texture2D" uid="uid://dcah2wv7h1qd5" path="res://images/ExportedIcons/caracal_money.png" id="16_4pj72"]
 [ext_resource type="Script" path="res://scripts/user_service.gd" id="16_l5v7n"]
 [ext_resource type="Texture2D" uid="uid://ceyjaj7yavl0s" path="res://images/ExportedIcons/Icon_Crown.png" id="17_37gx5"]
+[ext_resource type="Texture2D" uid="uid://duy3uvl8nqpgd" path="res://images/ExportedIcons/Icon_Star.png" id="18_3o5ri"]
 [ext_resource type="Script" path="res://module/other/scripts/splash_new_level.gd" id="18_8svay"]
 [ext_resource type="Texture2D" uid="uid://dtf1ukb6pkd8y" path="res://images/ExportedIcons/Icon_Diamond.png" id="18_80rwi"]
 [ext_resource type="AudioStream" uid="uid://rtcqidwrit6e" path="res://module/clickable/audio/Rise03.ogg" id="18_vuwhk"]
+[ext_resource type="Texture2D" uid="uid://bne84dvkqr2o3" path="res://images/ExportedIcons/Icon_Skull.png" id="19_f3wqb"]
+[ext_resource type="Texture2D" uid="uid://dey0fo3trbs17" path="res://images/ExportedIcons/Icon_Lightning.png" id="19_x0l4b"]
 
 [sub_resource type="Animation" id="Animation_ifp8u"]
 length = 0.001
@@ -234,28 +235,6 @@ stretch_mode = 5
 script = ExtResource("4_p6chl")
 metadata/_edit_use_anchors_ = true
 
-[node name="Radial" type="TextureRect" parent="H/Main/Shlepa/Egg" node_paths=PackedStringArray("anchor")]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -267.999
-offset_top = -268.0
-offset_right = 268.001
-offset_bottom = 267.999
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 6.28319
-scale = Vector2(0.476563, 0.476563)
-pivot_offset = Vector2(265.18, 275.751)
-texture = ExtResource("2_givnv")
-expand_mode = 1
-script = ExtResource("5_be51r")
-anchor = NodePath("..")
-
 [node name="Player" type="AnimationPlayer" parent="H/Main/Shlepa/Egg"]
 libraries = {
 "": SubResource("AnimationLibrary_cnqen")
@@ -404,6 +383,17 @@ texture = ExtResource("9_41ndx")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="Icon" type="TextureRect" parent="H/Menu/Panel/TRect"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+anchor_left = 0.0366667
+anchor_top = 0.233333
+anchor_right = 0.136667
+anchor_bottom = 0.733333
+texture = ExtResource("10_y73v1")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="MarginContainer" type="MarginContainer" parent="H/Menu/Panel/TRect"]
 layout_mode = 1
 anchors_preset = 15
@@ -415,15 +405,6 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="H/Menu/Panel/TRect/MarginContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="H/Menu/Panel/TRect/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-texture = ExtResource("10_y73v1")
-expand_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="H/Menu/Panel/TRect/MarginContainer"]
 auto_translate_mode = 1
@@ -567,10 +548,40 @@ autoFillDescription = true
 modulate = Color(0.745098, 0.745098, 0.745098, 1)
 layout_mode = 2
 icon = ExtResource("18_80rwi")
-Name = "Корона Шлепы"
+Name = "Бриллиант шлепы"
 description = "+100K каждую сек."
 price = 10000000
 autoClickBonus = 100000
+autoFillDescription = true
+
+[node name="ShopButton11" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+icon = ExtResource("19_x0l4b")
+Name = "Мега клик"
+description = "+5K при клике."
+price = 10000000
+clickBonus = 5000
+autoFillDescription = true
+
+[node name="ShopButton12" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+icon = ExtResource("18_3o5ri")
+Name = "Мега клик"
+description = "+10K каждую сек."
+price = 20000000
+autoClickBonus = 10000
+autoFillDescription = true
+
+[node name="ShopButton13" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+icon = ExtResource("19_f3wqb")
+Name = "Убойный клик"
+description = "+10K при клике."
+price = 20000000
+clickBonus = 10000
 autoFillDescription = true
 
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="H/Menu"]
@@ -594,6 +605,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -12.0
+offset_top = 4.0
+offset_right = -12.0
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
