@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccqyp8p6oddt4"]
+
+[ext_resource type="FontFile" uid="uid://bodqko384yack" path="res://fonts/Nunito-SemiBold.ttf" id="1_e218q"]
+
+[sub_resource type="GDScript" id="GDScript_qxu1l"]
+script/source = "extends Label
+
+var time = 1
+
+
+
+func _process(delta: float) -> void:
+	time -= delta
+	var alpha = time / 1
+	modulate.a = alpha
+	position.y -= 200 * delta
+	if(time < 0):
+		queue_free()
+"
+
+[node name="ScorePoint" type="Label"]
+auto_translate_mode = 1
+offset_left = 472.0
+offset_top = 315.0
+offset_right = 512.0
+offset_bottom = 338.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_e218q")
+theme_override_font_sizes/font_size = 40
+text = "+1"
+script = SubResource("GDScript_qxu1l")

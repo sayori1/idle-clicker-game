@@ -1,0 +1,122 @@
+[gd_scene load_steps=6 format=3 uid="uid://dg8m3b5m5vjnf"]
+
+[ext_resource type="Script" path="res://module/shop/scripts/shop_button.gd" id="1_h00kg"]
+[ext_resource type="FontFile" uid="uid://bodqko384yack" path="res://fonts/Nunito-SemiBold.ttf" id="1_omshp"]
+[ext_resource type="Texture2D" uid="uid://ckqvggqh3oihe" path="res://images/ExportedIcons/Icon_Award.png" id="2_uyu4w"]
+[ext_resource type="Texture2D" uid="uid://tn315km4r8sd" path="res://images/c25583cc-c5a2-40e8-a271-cccf230d7f3f.png" id="4_ob3fk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ww3is"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(0, 2)
+
+[node name="Panel" type="Panel"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(200, 100)
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ww3is")
+script = ExtResource("1_h00kg")
+icon = ExtResource("2_uyu4w")
+Name = "Не ебу"
+description = "Да хуй тебе "
+price = 10
+
+[node name="M" type="MarginContainer" parent="."]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="V2" type="VBoxContainer" parent="M"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = -30
+
+[node name="TextureRect" type="TextureRect" parent="M/V2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("2_uyu4w")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="M/V2"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="ScoreLabel" type="Label" parent="M/V2/HBoxContainer"]
+auto_translate_mode = 1
+z_index = 1000
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_omshp")
+theme_override_font_sizes/font_size = 25
+text = "10"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="M/V2/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("4_ob3fk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="H" type="HBoxContainer" parent="M"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="V" type="VBoxContainer" parent="M/H"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -30
+alignment = 1
+
+[node name="Label" type="RichTextLabel" parent="M/H/V"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 6
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_omshp")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "прсиав"
+fit_content = true
+
+[node name="Label2" type="Label" parent="M/H/V"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 6
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.807843, 0.807843, 0.807843, 1)
+theme_override_fonts/font = ExtResource("1_omshp")
+theme_override_font_sizes/font_size = 18
+text = "ЧАААА
+"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

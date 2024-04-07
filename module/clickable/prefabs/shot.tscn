@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://bchhc0iegjwti"]
+
+[ext_resource type="Texture2D" uid="uid://dcah2wv7h1qd5" path="res://images/ExportedIcons/caracal_money.png" id="1_ynpqw"]
+
+[sub_resource type="Curve" id="Curve_tj2yn"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.0226986, -200), 0.0, 0.0, 0, 0, Vector2(0.310214, 160.612), 0.0, 0.0, 0, 0, Vector2(0.612863, -189.337), 0.0, 0.0, 0, 0, Vector2(0.873897, 144.705), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[node name="Shot" type="CPUParticles2D"]
+emitting = false
+amount = 2
+one_shot = true
+explosiveness = 0.55
+randomness = 0.5
+texture = ExtResource("1_ynpqw")
+direction = Vector2(0, -100)
+spread = 78.4
+gravity = Vector2(0, 1400)
+initial_velocity_max = 340.21
+angular_velocity_min = 0.3
+angular_velocity_max = 0.6
+linear_accel_min = 0.4
+linear_accel_max = 0.8
+linear_accel_curve = SubResource("Curve_tj2yn")
+radial_accel_min = -15.46
+radial_accel_max = 18.56
+tangential_accel_min = -0.6
+tangential_accel_max = 18.56
+damping_max = 10.052
+angle_max = 180.0
+scale_amount_min = 0.05
+scale_amount_max = 0.1

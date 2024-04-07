@@ -1,0 +1,607 @@
+[gd_scene load_steps=32 format=3 uid="uid://de83uvp1ygta7"]
+
+[ext_resource type="Texture2D" uid="uid://djipho6kgc20r" path="res://BG.png" id="1_jm8yv"]
+[ext_resource type="Texture2D" uid="uid://c3euqb8d6ttlc" path="res://module/clickable/images/radial.png" id="2_givnv"]
+[ext_resource type="Texture2D" uid="uid://drq13pgryess8" path="res://module/clickable/images/evolution/0.png" id="2_gjx1p"]
+[ext_resource type="Texture2D" uid="uid://ol0fpgj1gcuj" path="res://module/clickable/images/shadow.png" id="3_dkvsd"]
+[ext_resource type="Script" path="res://module/clickable/scripts/egg.gd" id="4_p6chl"]
+[ext_resource type="Script" path="res://scripts/radial.gd" id="5_be51r"]
+[ext_resource type="AudioStream" uid="uid://dbgcpelfvdwpd" path="res://module/clickable/audio/click.ogg" id="7_unjn1"]
+[ext_resource type="FontFile" uid="uid://bodqko384yack" path="res://fonts/Nunito-SemiBold.ttf" id="8_rr8fu"]
+[ext_resource type="Texture2D" uid="uid://bnpv7ocwxg3dq" path="res://images/ExportedIcons/Item2.png" id="9_41ndx"]
+[ext_resource type="Texture2D" uid="uid://tn315km4r8sd" path="res://images/c25583cc-c5a2-40e8-a271-cccf230d7f3f.png" id="9_jc4qn"]
+[ext_resource type="Texture2D" uid="uid://gdcwd2h3f3i0" path="res://images/ExportedIcons/Icon_Cart.png" id="10_y73v1"]
+[ext_resource type="PackedScene" uid="uid://dg8m3b5m5vjnf" path="res://module/shop/prefabs/shop_button.tscn" id="12_xxq24"]
+[ext_resource type="Texture2D" uid="uid://d3pn5jvg5hvkl" path="res://images/ExportedIcons/Icon_Clock.png" id="13_0od38"]
+[ext_resource type="Texture2D" uid="uid://cwgiog8uec2c8" path="res://images/ExportedIcons/Icon_ArrowUp.png" id="14_xfjfu"]
+[ext_resource type="Script" path="res://module/audio/scripts/audio_player.gd" id="15_tvttp"]
+[ext_resource type="Texture2D" uid="uid://dcah2wv7h1qd5" path="res://images/ExportedIcons/caracal_money.png" id="16_4pj72"]
+[ext_resource type="Script" path="res://scripts/user_service.gd" id="16_l5v7n"]
+[ext_resource type="Texture2D" uid="uid://ceyjaj7yavl0s" path="res://images/ExportedIcons/Icon_Crown.png" id="17_37gx5"]
+[ext_resource type="Script" path="res://module/other/scripts/splash_new_level.gd" id="18_8svay"]
+[ext_resource type="Texture2D" uid="uid://dtf1ukb6pkd8y" path="res://images/ExportedIcons/Icon_Diamond.png" id="18_80rwi"]
+[ext_resource type="AudioStream" uid="uid://rtcqidwrit6e" path="res://module/clickable/audio/Rise03.ogg" id="18_vuwhk"]
+
+[sub_resource type="Animation" id="Animation_ifp8u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_w8dts"]
+resource_name = "touch"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cnqen"]
+_data = {
+"RESET": SubResource("Animation_ifp8u"),
+"touch": SubResource("Animation_w8dts")
+}
+
+[sub_resource type="GDScript" id="GDScript_j1cmd"]
+script/source = "extends Label
+
+var value = 0
+var actualValue = 0:
+	set(v):
+		actualValue = v
+		text = Utils.beautify_number(round(actualValue))
+@export var lerpSpeed = 0.1
+
+func _ready() -> void:
+	UserService.instance.update.connect(refresh)
+	
+func refresh():
+	value = UserService.instance.money
+
+func _process(delta: float) -> void:
+	actualValue = lerpf(actualValue, value, lerpSpeed)
+"
+
+[sub_resource type="GDScript" id="GDScript_mpicl"]
+script/source = "extends Label
+
+func _ready() -> void:
+	UserService.instance.update.connect(refresh)
+	
+func refresh():
+	text = str(UserService.instance.autoClickAmount)
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_luoss"]
+bg_color = Color(0.239216, 0.239216, 0.239216, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6ctr"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.870588, 0.329412, 0.737255, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="GDScript" id="GDScript_iquvu"]
+script/source = "extends ProgressBar
+
+
+func _ready() -> void:
+	UserService.instance.update.connect(refresh)
+	
+func refresh():
+	value = UserService.instance.xp_progress
+	$Label.text = \"Уровень %s\" % UserService.instance.level
+"
+
+[sub_resource type="Animation" id="Animation_2reh7"]
+resource_name = "splash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NewLevelSound")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pcqo1"]
+_data = {
+"splash": SubResource("Animation_2reh7")
+}
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("16_l5v7n")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_jm8yv")
+expand_mode = 3
+flip_h = true
+
+[node name="H" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="Control" parent="H"]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.736111
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Shlepa" type="Control" parent="H/Main"]
+layout_mode = 1
+anchor_left = 0.220519
+anchor_top = 0.344136
+anchor_right = 0.759434
+anchor_bottom = 0.890432
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Shadow" type="TextureRect" parent="H/Main/Shlepa"]
+layout_mode = 0
+anchor_left = 0.256018
+anchor_top = 0.90113
+anchor_right = 0.743982
+anchor_bottom = 1.01412
+texture = ExtResource("3_dkvsd")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Egg" type="TextureRect" parent="H/Main/Shlepa"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.271991
+anchor_top = 0.396907
+anchor_right = 0.728009
+anchor_bottom = 1.0
+grow_horizontal = 2
+pivot_offset = Vector2(102.7, 208.495)
+texture = ExtResource("2_gjx1p")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("4_p6chl")
+metadata/_edit_use_anchors_ = true
+
+[node name="Radial" type="TextureRect" parent="H/Main/Shlepa/Egg" node_paths=PackedStringArray("anchor")]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -267.999
+offset_top = -268.0
+offset_right = 268.001
+offset_bottom = 267.999
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 6.28319
+scale = Vector2(0.476563, 0.476563)
+pivot_offset = Vector2(265.18, 275.751)
+texture = ExtResource("2_givnv")
+expand_mode = 1
+script = ExtResource("5_be51r")
+anchor = NodePath("..")
+
+[node name="Player" type="AnimationPlayer" parent="H/Main/Shlepa/Egg"]
+libraries = {
+"": SubResource("AnimationLibrary_cnqen")
+}
+speed_scale = 5.0
+
+[node name="TouchSound" type="AudioStreamPlayer2D" parent="H/Main/Shlepa/Egg"]
+stream = ExtResource("7_unjn1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="H/Main"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 2.0
+offset_top = 24.0
+offset_right = 2.0
+offset_bottom = 194.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="HBoxContainer" parent="H/Main/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="H/Main/VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+z_index = 1000
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("8_rr8fu")
+theme_override_font_sizes/font_size = 80
+text = "0"
+horizontal_alignment = 1
+script = SubResource("GDScript_j1cmd")
+
+[node name="TextureRect" type="TextureRect" parent="H/Main/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("9_jc4qn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AutoScore" type="HBoxContainer" parent="H/Main/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+alignment = 1
+
+[node name="AutoScoreLabel" type="Label" parent="H/Main/VBoxContainer/AutoScore"]
+auto_translate_mode = 1
+z_index = 1000
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("8_rr8fu")
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 1
+script = SubResource("GDScript_mpicl")
+
+[node name="TextureRect" type="TextureRect" parent="H/Main/VBoxContainer/AutoScore"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("9_jc4qn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="H/Main/VBoxContainer/AutoScore"]
+auto_translate_mode = 1
+z_index = 1000
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("8_rr8fu")
+theme_override_font_sizes/font_size = 40
+text = "каждую сек."
+horizontal_alignment = 1
+
+[node name="LevelBar" type="ProgressBar" parent="H/Main"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.724057
+anchor_top = 0.938272
+anchor_right = 0.994104
+anchor_bottom = 0.992284
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_luoss")
+theme_override_styles/fill = SubResource("StyleBoxFlat_e6ctr")
+value = 40.0
+show_percentage = false
+script = SubResource("GDScript_iquvu")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="H/Main/LevelBar"]
+auto_translate_mode = 1
+z_index = 1000
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -3.0
+offset_top = -20.0
+offset_right = 4.0
+offset_bottom = 22.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("8_rr8fu")
+theme_override_font_sizes/font_size = 30
+text = "Уровень 1"
+horizontal_alignment = 1
+
+[node name="Menu" type="Control" parent="H"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.739583
+anchor_right = 1.0
+anchor_bottom = 1.0
+pivot_offset = Vector2(557, 140)
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="H/Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TRect" type="TextureRect" parent="H/Menu/Panel"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+anchor_right = 0.999999
+anchor_bottom = 0.0925926
+grow_horizontal = 2
+texture = ExtResource("9_41ndx")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="H/Menu/Panel/TRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="H/Menu/Panel/TRect/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="H/Menu/Panel/TRect/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("10_y73v1")
+expand_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="H/Menu/Panel/TRect/MarginContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Label" type="Label" parent="H/Menu/Panel/TRect/MarginContainer/HBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("8_rr8fu")
+theme_override_font_sizes/font_size = 30
+text = "Магазин"
+horizontal_alignment = 1
+
+[node name="M" type="MarginContainer" parent="H/Menu/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.101852
+anchor_right = 0.999999
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="H/Menu/Panel/M"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="H/Menu/Panel/M/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+metadata/_edit_use_anchors_ = true
+
+[node name="ShopButton" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+icon = ExtResource("13_0od38")
+Name = "Авто клик"
+description = "+1 каждую сек."
+price = 15
+autoClickBonus = 1
+autoFillDescription = true
+
+[node name="ShopButton2" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+icon = ExtResource("14_xfjfu")
+Name = "Клик"
+description = "+1 при клике."
+price = 100
+clickBonus = 1
+autoFillDescription = true
+
+[node name="ShopButton3" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+icon_modulate = Color(1, 0.844932, 0.39163, 1)
+icon = ExtResource("16_4pj72")
+Name = "Мегашлепа"
+description = "+25 каждую сек."
+price = 1500
+autoClickBonus = 25
+autoFillDescription = true
+
+[node name="ShopButton4" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+icon_modulate = Color(0.73859, 0.73859, 0.73859, 1)
+icon = ExtResource("14_xfjfu")
+Name = "Стальной клик"
+description = "+50 при клике."
+price = 10000
+clickBonus = 50
+autoFillDescription = true
+
+[node name="ShopButton5" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+icon_modulate = Color(0.929694, 0.835489, 0.831664, 1)
+icon = ExtResource("16_4pj72")
+Name = "Гигашлепа"
+description = "+2K каждую сек."
+price = 110000
+autoClickBonus = 2000
+autoFillDescription = true
+
+[node name="ShopButton6" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+icon_modulate = Color(0.861255, 0.84572, 0.95231, 1)
+icon = ExtResource("16_4pj72")
+Name = "Терашлепа"
+description = "+25K каждую сек."
+price = 1000000
+autoClickBonus = 25000
+autoFillDescription = true
+
+[node name="ShopButton7" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+icon_modulate = Color(0.870588, 0.729412, 0, 1)
+icon = ExtResource("14_xfjfu")
+Name = "Золотой клик"
+description = "+150 при клике."
+price = 1000000
+clickBonus = 150
+autoFillDescription = true
+
+[node name="ShopButton8" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+icon = ExtResource("17_37gx5")
+Name = "Корона Шлепы"
+description = "+50K каждую сек."
+price = 5000000
+autoClickBonus = 50000
+autoFillDescription = true
+
+[node name="ShopButton9" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+icon_modulate = Color(0.902589, 0.651284, 0.795582, 1)
+icon = ExtResource("14_xfjfu")
+Name = "Супер клик"
+description = "+1K при клике."
+price = 5000000
+clickBonus = 1000
+autoFillDescription = true
+
+[node name="ShopButton10" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+icon = ExtResource("18_80rwi")
+Name = "Корона Шлепы"
+description = "+100K каждую сек."
+price = 10000000
+autoClickBonus = 100000
+autoFillDescription = true
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="H/Menu"]
+script = ExtResource("15_tvttp")
+
+[node name="SplashNewLevel" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("18_8svay")
+
+[node name="ColorRect" type="ColorRect" parent="SplashNewLevel"]
+z_index = 4096
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SplashNewLevel"]
+libraries = {
+"": SubResource("AnimationLibrary_pcqo1")
+}
+
+[node name="NewLevelSound" type="AudioStreamPlayer2D" parent="SplashNewLevel"]
+stream = ExtResource("18_vuwhk")

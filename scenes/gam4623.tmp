@@ -1,0 +1,377 @@
+[gd_scene load_steps=21 format=3 uid="uid://de83uvp1ygta7"]
+
+[ext_resource type="Texture2D" uid="uid://djipho6kgc20r" path="res://BG.png" id="1_jm8yv"]
+[ext_resource type="Texture2D" uid="uid://c3euqb8d6ttlc" path="res://module/clickable/images/radial.png" id="2_givnv"]
+[ext_resource type="Texture2D" uid="uid://drq13pgryess8" path="res://module/clickable/images/egg.png" id="2_gjx1p"]
+[ext_resource type="Texture2D" uid="uid://ol0fpgj1gcuj" path="res://module/clickable/images/shadow.png" id="3_dkvsd"]
+[ext_resource type="Script" path="res://module/clickable/scripts/egg.gd" id="4_p6chl"]
+[ext_resource type="Script" path="res://scripts/radial.gd" id="5_be51r"]
+[ext_resource type="AudioStream" uid="uid://dbgcpelfvdwpd" path="res://module/clickable/audio/click.ogg" id="7_unjn1"]
+[ext_resource type="FontFile" uid="uid://bodqko384yack" path="res://fonts/Nunito-SemiBold.ttf" id="8_rr8fu"]
+[ext_resource type="Texture2D" uid="uid://bnpv7ocwxg3dq" path="res://images/ExportedIcons/Item2.png" id="9_41ndx"]
+[ext_resource type="Texture2D" uid="uid://tn315km4r8sd" path="res://images/c25583cc-c5a2-40e8-a271-cccf230d7f3f.png" id="9_jc4qn"]
+[ext_resource type="Texture2D" uid="uid://gdcwd2h3f3i0" path="res://images/ExportedIcons/Icon_Cart.png" id="10_y73v1"]
+[ext_resource type="PackedScene" uid="uid://dg8m3b5m5vjnf" path="res://module/shop/prefabs/shop_button.tscn" id="12_xxq24"]
+[ext_resource type="Texture2D" uid="uid://d3pn5jvg5hvkl" path="res://images/ExportedIcons/Icon_Clock.png" id="13_0od38"]
+[ext_resource type="Texture2D" uid="uid://cwgiog8uec2c8" path="res://images/ExportedIcons/Icon_ArrowUp.png" id="14_xfjfu"]
+[ext_resource type="Script" path="res://module/audio/scripts/audio_player.gd" id="15_tvttp"]
+
+[sub_resource type="Animation" id="Animation_ifp8u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_w8dts"]
+resource_name = "touch"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cnqen"]
+_data = {
+"RESET": SubResource("Animation_ifp8u"),
+"touch": SubResource("Animation_w8dts")
+}
+
+[sub_resource type="GDScript" id="GDScript_j1cmd"]
+script/source = "extends Label
+
+var value = 0
+var actualValue = 0:
+	set(v):
+		actualValue = v
+		text = Utils.beautify_number(round(actualValue))
+@export var lerpSpeed = 0.1
+
+func _ready() -> void:
+	UserService.instance.update.connect(refresh)
+	
+func refresh():
+	value = UserService.instance.money
+
+func _process(delta: float) -> void:
+	actualValue = lerpf(actualValue, value, lerpSpeed)
+"
+
+[sub_resource type="GDScript" id="GDScript_mpicl"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_jm8yv")
+expand_mode = 3
+flip_h = true
+
+[node name="H" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="Control" parent="H"]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.736111
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Shlepa" type="Control" parent="H/Main"]
+layout_mode = 1
+anchor_left = 0.220519
+anchor_top = 0.344136
+anchor_right = 0.759434
+anchor_bottom = 0.890432
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Shadow" type="TextureRect" parent="H/Main/Shlepa"]
+layout_mode = 0
+anchor_left = 0.256018
+anchor_top = 0.90113
+anchor_right = 0.743982
+anchor_bottom = 1.01412
+texture = ExtResource("3_dkvsd")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Egg" type="TextureRect" parent="H/Main/Shlepa"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.271991
+anchor_top = 0.396907
+anchor_right = 0.728009
+anchor_bottom = 1.0
+grow_horizontal = 2
+pivot_offset = Vector2(102.7, 208.495)
+texture = ExtResource("2_gjx1p")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("4_p6chl")
+metadata/_edit_use_anchors_ = true
+
+[node name="Radial" type="TextureRect" parent="H/Main/Shlepa/Egg"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0539465
+anchor_top = -0.239208
+anchor_right = 2.25164
+anchor_bottom = 2.34634
+offset_left = -398.542
+offset_top = -400.435
+offset_right = 137.458
+offset_bottom = 135.564
+grow_horizontal = 2
+grow_vertical = 0
+rotation = 6.28319
+scale = Vector2(0.476563, 0.476563)
+pivot_offset = Vector2(483.581, 574.271)
+texture = ExtResource("2_givnv")
+expand_mode = 1
+script = ExtResource("5_be51r")
+metadata/_edit_use_anchors_ = true
+
+[node name="Player" type="AnimationPlayer" parent="H/Main/Shlepa/Egg"]
+libraries = {
+"": SubResource("AnimationLibrary_cnqen")
+}
+speed_scale = 5.0
+
+[node name="TouchSound" type="AudioStreamPlayer2D" parent="H/Main/Shlepa/Egg"]
+stream = ExtResource("7_unjn1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="H/Main"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 2.0
+offset_top = 24.0
+offset_right = 2.0
+offset_bottom = 194.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="HBoxContainer" parent="H/Main/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="H/Main/VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+z_index = 1000
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("8_rr8fu")
+theme_override_font_sizes/font_size = 80
+text = "0"
+horizontal_alignment = 1
+script = SubResource("GDScript_j1cmd")
+
+[node name="TextureRect" type="TextureRect" parent="H/Main/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("9_jc4qn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AutoScore" type="HBoxContainer" parent="H/Main/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+alignment = 1
+
+[node name="AutoScoreLabel" type="Label" parent="H/Main/VBoxContainer/AutoScore"]
+auto_translate_mode = 1
+z_index = 1000
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("8_rr8fu")
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 1
+script = SubResource("GDScript_mpicl")
+
+[node name="TextureRect" type="TextureRect" parent="H/Main/VBoxContainer/AutoScore"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("9_jc4qn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="H/Main/VBoxContainer/AutoScore"]
+auto_translate_mode = 1
+z_index = 1000
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("8_rr8fu")
+theme_override_font_sizes/font_size = 40
+text = "каждую сек."
+horizontal_alignment = 1
+
+[node name="Menu" type="Control" parent="H"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.739583
+anchor_right = 1.0
+anchor_bottom = 1.0
+pivot_offset = Vector2(557, 140)
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="H/Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TRect" type="TextureRect" parent="H/Menu/Panel"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+anchor_right = 0.999999
+anchor_bottom = 0.0925926
+grow_horizontal = 2
+texture = ExtResource("9_41ndx")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="H/Menu/Panel/TRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="H/Menu/Panel/TRect/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="H/Menu/Panel/TRect/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("10_y73v1")
+expand_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="H/Menu/Panel/TRect/MarginContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Label" type="Label" parent="H/Menu/Panel/TRect/MarginContainer/HBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("8_rr8fu")
+theme_override_font_sizes/font_size = 30
+text = "Магазин"
+horizontal_alignment = 1
+
+[node name="M" type="MarginContainer" parent="H/Menu/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.101852
+anchor_right = 0.999999
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="H/Menu/Panel/M"]
+layout_mode = 2
+theme_override_constants/separation = 8
+metadata/_edit_use_anchors_ = true
+
+[node name="ShopButton" parent="H/Menu/Panel/M/VBoxContainer" instance=ExtResource("12_xxq24")]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+icon = ExtResource("13_0od38")
+Name = "Авто клик"
+description = "+1 каждую сек."
+autoClickBonus = 1
+autoFillDescription = true
+
+[node name="ShopButton2" parent="H/Menu/Panel/M/VBoxContainer" instance=ExtResource("12_xxq24")]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+icon = ExtResource("14_xfjfu")
+Name = "Клик"
+description = "+1 при клике."
+clickBonus = 1
+autoFillDescription = true
+
+[node name="ShopButton3" parent="H/Menu/Panel/M/VBoxContainer" instance=ExtResource("12_xxq24")]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+icon = ExtResource("14_xfjfu")
+Name = "Медная шлепа"
+description = "+1 при клике."
+clickBonus = 1
+autoFillDescription = true
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="H/Menu"]
+script = ExtResource("15_tvttp")
