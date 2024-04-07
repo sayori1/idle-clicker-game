@@ -25,11 +25,10 @@ shadow_offset = Vector2(0, 2)
 auto_translate_mode = 1
 custom_minimum_size = Vector2(200, 100)
 mouse_filter = 1
+mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ww3is")
 script = ExtResource("1_h00kg")
 icon = ExtResource("2_uyu4w")
-Name = "Не ебу"
-description = "Да хуй тебе "
 price = 10
 
 [node name="M" type="MarginContainer" parent="."]
@@ -105,7 +104,6 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("1_omshp")
 theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
-text = "прсиав"
 fit_content = true
 
 [node name="Label2" type="Label" parent="M/H/V"]
@@ -116,7 +114,5 @@ mouse_filter = 1
 theme_override_colors/font_color = Color(0.807843, 0.807843, 0.807843, 1)
 theme_override_fonts/font = ExtResource("1_omshp")
 theme_override_font_sizes/font_size = 18
-text = "ЧАААА
-"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

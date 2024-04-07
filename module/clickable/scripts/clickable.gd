@@ -36,7 +36,7 @@ func onTouch():
 	scorePoint.text = '+%s' % Utils.beautify_number(UserService.instance.clickAmount)
 	
 	scorePoint.global_position = global_position
-	scorePoint.global_position.x += randf_range(-50, 50)
+	scorePoint.global_position.x += randf_range(0, get_rect().size.x )
 	scorePoint.global_position.y += randf_range(-50, 50)
 	
 	var shot = SHOT.instantiate()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://de83uvp1ygta7"]
+[gd_scene load_steps=35 format=3 uid="uid://de83uvp1ygta7"]
 
 [ext_resource type="Texture2D" uid="uid://djipho6kgc20r" path="res://BG.png" id="1_jm8yv"]
 [ext_resource type="Texture2D" uid="uid://drq13pgryess8" path="res://module/clickable/images/evolution/0.png" id="2_gjx1p"]
@@ -22,6 +22,8 @@
 [ext_resource type="AudioStream" uid="uid://rtcqidwrit6e" path="res://module/clickable/audio/Rise03.ogg" id="18_vuwhk"]
 [ext_resource type="Texture2D" uid="uid://bne84dvkqr2o3" path="res://images/ExportedIcons/Icon_Skull.png" id="19_f3wqb"]
 [ext_resource type="Texture2D" uid="uid://dey0fo3trbs17" path="res://images/ExportedIcons/Icon_Lightning.png" id="19_x0l4b"]
+[ext_resource type="Texture2D" uid="uid://c40xcqgc3ahgw" path="res://images/ExportedIcons/Icon_Plant.png" id="20_0lxov"]
+[ext_resource type="Texture2D" uid="uid://bj60glq1rb3kw" path="res://images/ExportedIcons/Icon_Magic.png" id="21_3t34p"]
 
 [sub_resource type="Animation" id="Animation_ifp8u"]
 length = 0.001
@@ -229,6 +231,7 @@ anchor_right = 0.728009
 anchor_bottom = 1.0
 grow_horizontal = 2
 pivot_offset = Vector2(102.7, 208.495)
+mouse_default_cursor_shape = 2
 texture = ExtResource("2_gjx1p")
 expand_mode = 1
 stretch_mode = 5
@@ -568,7 +571,7 @@ autoFillDescription = true
 modulate = Color(0.745098, 0.745098, 0.745098, 1)
 layout_mode = 2
 icon = ExtResource("18_3o5ri")
-Name = "Мега клик"
+Name = "Звезда шлепы"
 description = "+10K каждую сек."
 price = 20000000
 autoClickBonus = 10000
@@ -582,6 +585,26 @@ Name = "Убойный клик"
 description = "+10K при клике."
 price = 20000000
 clickBonus = 10000
+autoFillDescription = true
+
+[node name="ShopButton14" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+icon = ExtResource("20_0lxov")
+Name = "Сад шлепы"
+description = "+20K каждую сек."
+price = 50000000
+autoClickBonus = 20000
+autoFillDescription = true
+
+[node name="ShopButton15" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
+modulate = Color(0.745098, 0.745098, 0.745098, 1)
+layout_mode = 2
+icon = ExtResource("21_3t34p")
+Name = "Волшебный клик"
+description = "+50K при клике."
+price = 50000000
+clickBonus = 50000
 autoFillDescription = true
 
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="H/Menu"]

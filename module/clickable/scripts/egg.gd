@@ -16,6 +16,10 @@ func _process(delta: float) -> void:
 	time += delta
 	var alpha = sin(time)
 	rotation = alpha * 0.1
+	
+	var x = get_rect().size.x / 2
+	var y = get_rect().size.y 
+	pivot_offset = Vector2(x,y)
 
 func onTouch():
 	super.onTouch()
