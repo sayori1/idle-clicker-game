@@ -29,8 +29,6 @@ func onTouch():
 	UserService.instance.touches += 1
 	UserService.instance.money += UserService.instance.clickAmount
 	
-
-	
 	score_label.value = UserService.instance.money
 	
 	var scorePoint = SCORE_POINT.instantiate()
