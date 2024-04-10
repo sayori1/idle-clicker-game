@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://de83uvp1ygta7"]
+[gd_scene load_steps=43 format=3 uid="uid://de83uvp1ygta7"]
 
 [ext_resource type="Script" path="res://scripts/yandex_service.gd" id="1_15b4f"]
 [ext_resource type="Texture2D" uid="uid://djipho6kgc20r" path="res://BG.png" id="1_jm8yv"]
@@ -25,7 +25,6 @@
 [ext_resource type="Texture2D" uid="uid://dey0fo3trbs17" path="res://images/ExportedIcons/Icon_Lightning.png" id="19_x0l4b"]
 [ext_resource type="Texture2D" uid="uid://c40xcqgc3ahgw" path="res://images/ExportedIcons/Icon_Plant.png" id="20_0lxov"]
 [ext_resource type="Texture2D" uid="uid://bj60glq1rb3kw" path="res://images/ExportedIcons/Icon_Magic.png" id="21_3t34p"]
-[ext_resource type="Script" path="res://scripts/splash_ad.gd" id="26_cxk1i"]
 [ext_resource type="Texture2D" uid="uid://b61yq70kp3fq7" path="res://images/ExportedIcons/Icon_SoundOn.png" id="26_jysa2"]
 [ext_resource type="Script" path="res://scripts/sound_button.gd" id="27_j5q8y"]
 [ext_resource type="Texture2D" uid="uid://br1sawig828of" path="res://images/ExportedIcons/Icon_Present.png" id="28_7b21j"]
@@ -171,21 +170,6 @@ _data = {
 "splash": SubResource("Animation_2reh7")
 }
 
-[sub_resource type="Animation" id="Animation_vyoad"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
 [sub_resource type="Animation" id="Animation_xwbpw"]
 resource_name = "default"
 length = 20.0
@@ -201,6 +185,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 0.0, 0.369272, -0.276696, 0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_vyoad"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1othk"]
@@ -392,16 +391,16 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = -3.0
-offset_top = -28.0
+offset_top = -20.0
 offset_right = 4.0
-offset_bottom = 28.0
+offset_bottom = 22.0
 grow_horizontal = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 3
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("8_rr8fu")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 30
 text = "Уровень 1"
 horizontal_alignment = 1
 
@@ -671,45 +670,6 @@ libraries = {
 
 [node name="NewLevelSound" type="AudioStreamPlayer2D" parent="SplashNewLevel"]
 stream = ExtResource("18_vuwhk")
-
-[node name="SplashAd" type="Control" parent="."]
-auto_translate_mode = 1
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("26_cxk1i")
-
-[node name="ColorRect" type="ColorRect" parent="SplashAd"]
-auto_translate_mode = 1
-self_modulate = Color(0, 0, 0, 0.435294)
-z_index = 4096
-z_as_relative = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="SplashAd/ColorRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("8_rr8fu")
-theme_override_font_sizes/font_size = 80
-text = "Реклама через 3 сек."
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="SoundButton" type="TextureRect" parent="."]
 layout_mode = 1
