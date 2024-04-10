@@ -28,7 +28,8 @@ static func js_show_ad():
 
 static func js_show_rewarded_ad():
 	instance.get_tree().paused = true
-	win.ShowAdRewardedVideo(callback_rewarded_ad)
+	if(win != null):
+		win.ShowAdRewardedVideo(callback_rewarded_ad)
 	await instance.get_tree().create_timer(20).timeout
 	instance.get_tree().paused = false
 	

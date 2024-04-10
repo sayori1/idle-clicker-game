@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3euqb8d6ttlc"
-path="res://.godot/imported/radial.png-86b77fe8d9851766eb1274f874cb099b.ctex"
+uid="uid://bjne5ar0kt0ln"
+path="res://.godot/imported/BG.jpg-97b2bb6cbc9430979a25e82ed2bff8ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://module/clickable/images/radial.png"
-dest_files=["res://.godot/imported/radial.png-86b77fe8d9851766eb1274f874cb099b.ctex"]
+source_file="res://BG.jpg"
+dest_files=["res://.godot/imported/BG.jpg-97b2bb6cbc9430979a25e82ed2bff8ca.ctex"]
 
 [params]
 

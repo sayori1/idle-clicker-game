@@ -1,8 +1,8 @@
 [gd_scene load_steps=44 format=3 uid="uid://de83uvp1ygta7"]
 
 [ext_resource type="Script" path="res://scripts/yandex_service.gd" id="1_15b4f"]
-[ext_resource type="Texture2D" uid="uid://djipho6kgc20r" path="res://BG.png" id="1_jm8yv"]
 [ext_resource type="Texture2D" uid="uid://drq13pgryess8" path="res://module/clickable/images/evolution/0.png" id="2_gjx1p"]
+[ext_resource type="Texture2D" uid="uid://bjne5ar0kt0ln" path="res://BG.jpg" id="3_214w1"]
 [ext_resource type="Texture2D" uid="uid://ol0fpgj1gcuj" path="res://module/clickable/images/shadow.png" id="3_dkvsd"]
 [ext_resource type="Script" path="res://module/clickable/scripts/egg.gd" id="4_p6chl"]
 [ext_resource type="AudioStream" uid="uid://dbgcpelfvdwpd" path="res://module/clickable/audio/click.ogg" id="7_unjn1"]
@@ -220,7 +220,7 @@ grow_vertical = 2
 [node name="YandexService" type="Node" parent="."]
 script = ExtResource("1_15b4f")
 
-[node name="Node" type="Node" parent="."]
+[node name="UserService" type="Node" parent="."]
 script = ExtResource("16_l5v7n")
 
 [node name="BG" type="TextureRect" parent="."]
@@ -230,7 +230,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_jm8yv")
+texture = ExtResource("3_214w1")
 expand_mode = 3
 flip_h = true
 
