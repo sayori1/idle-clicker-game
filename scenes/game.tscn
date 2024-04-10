@@ -1,5 +1,6 @@
-[gd_scene load_steps=35 format=3 uid="uid://de83uvp1ygta7"]
+[gd_scene load_steps=36 format=3 uid="uid://de83uvp1ygta7"]
 
+[ext_resource type="Script" path="res://scripts/yandex_service.gd" id="1_15b4f"]
 [ext_resource type="Texture2D" uid="uid://djipho6kgc20r" path="res://BG.png" id="1_jm8yv"]
 [ext_resource type="Texture2D" uid="uid://drq13pgryess8" path="res://module/clickable/images/evolution/0.png" id="2_gjx1p"]
 [ext_resource type="Texture2D" uid="uid://ol0fpgj1gcuj" path="res://module/clickable/images/shadow.png" id="3_dkvsd"]
@@ -172,6 +173,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="YandexService" type="Node" parent="."]
+script = ExtResource("1_15b4f")
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource("16_l5v7n")
@@ -452,7 +456,6 @@ theme_override_constants/separation = 8
 metadata/_edit_use_anchors_ = true
 
 [node name="ShopButton" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
-modulate = Color(0.745098, 0.745098, 0.745098, 1)
 layout_mode = 2
 icon = ExtResource("13_0od38")
 Name = "Авто клик"
@@ -462,7 +465,6 @@ autoClickBonus = 1
 autoFillDescription = true
 
 [node name="ShopButton2" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
-modulate = Color(0.745098, 0.745098, 0.745098, 1)
 layout_mode = 2
 icon = ExtResource("14_xfjfu")
 Name = "Клик"
@@ -472,7 +474,6 @@ clickBonus = 1
 autoFillDescription = true
 
 [node name="ShopButton3" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
-modulate = Color(0.745098, 0.745098, 0.745098, 1)
 layout_mode = 2
 icon_modulate = Color(1, 0.844932, 0.39163, 1)
 icon = ExtResource("16_4pj72")
@@ -483,7 +484,6 @@ autoClickBonus = 25
 autoFillDescription = true
 
 [node name="ShopButton4" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
-modulate = Color(0.745098, 0.745098, 0.745098, 1)
 layout_mode = 2
 icon_modulate = Color(0.73859, 0.73859, 0.73859, 1)
 icon = ExtResource("14_xfjfu")
@@ -494,7 +494,6 @@ clickBonus = 50
 autoFillDescription = true
 
 [node name="ShopButton5" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
-modulate = Color(0.745098, 0.745098, 0.745098, 1)
 layout_mode = 2
 icon_modulate = Color(0.929694, 0.835489, 0.831664, 1)
 icon = ExtResource("16_4pj72")
@@ -505,7 +504,6 @@ autoClickBonus = 2000
 autoFillDescription = true
 
 [node name="ShopButton6" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
-modulate = Color(0.745098, 0.745098, 0.745098, 1)
 layout_mode = 2
 icon_modulate = Color(0.861255, 0.84572, 0.95231, 1)
 icon = ExtResource("16_4pj72")
@@ -516,7 +514,6 @@ autoClickBonus = 25000
 autoFillDescription = true
 
 [node name="ShopButton7" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
-modulate = Color(0.745098, 0.745098, 0.745098, 1)
 layout_mode = 2
 icon_modulate = Color(0.870588, 0.729412, 0, 1)
 icon = ExtResource("14_xfjfu")
@@ -527,7 +524,6 @@ clickBonus = 150
 autoFillDescription = true
 
 [node name="ShopButton8" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
-modulate = Color(0.745098, 0.745098, 0.745098, 1)
 layout_mode = 2
 icon = ExtResource("17_37gx5")
 Name = "Корона Шлепы"
@@ -537,7 +533,6 @@ autoClickBonus = 50000
 autoFillDescription = true
 
 [node name="ShopButton9" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
-modulate = Color(0.745098, 0.745098, 0.745098, 1)
 layout_mode = 2
 icon_modulate = Color(0.902589, 0.651284, 0.795582, 1)
 icon = ExtResource("14_xfjfu")
@@ -548,7 +543,6 @@ clickBonus = 1000
 autoFillDescription = true
 
 [node name="ShopButton10" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
-modulate = Color(0.745098, 0.745098, 0.745098, 1)
 layout_mode = 2
 icon = ExtResource("18_80rwi")
 Name = "Бриллиант шлепы"
@@ -558,7 +552,6 @@ autoClickBonus = 100000
 autoFillDescription = true
 
 [node name="ShopButton11" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
-modulate = Color(0.745098, 0.745098, 0.745098, 1)
 layout_mode = 2
 icon = ExtResource("19_x0l4b")
 Name = "Мега клик"
@@ -568,7 +561,6 @@ clickBonus = 5000
 autoFillDescription = true
 
 [node name="ShopButton12" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
-modulate = Color(0.745098, 0.745098, 0.745098, 1)
 layout_mode = 2
 icon = ExtResource("18_3o5ri")
 Name = "Звезда шлепы"
@@ -578,7 +570,6 @@ autoClickBonus = 10000
 autoFillDescription = true
 
 [node name="ShopButton13" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
-modulate = Color(0.745098, 0.745098, 0.745098, 1)
 layout_mode = 2
 icon = ExtResource("19_f3wqb")
 Name = "Убойный клик"
@@ -588,7 +579,6 @@ clickBonus = 10000
 autoFillDescription = true
 
 [node name="ShopButton14" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
-modulate = Color(0.745098, 0.745098, 0.745098, 1)
 layout_mode = 2
 icon = ExtResource("20_0lxov")
 Name = "Сад шлепы"
@@ -598,7 +588,6 @@ autoClickBonus = 20000
 autoFillDescription = true
 
 [node name="ShopButton15" parent="H/Menu/Panel/M/ScrollContainer/VBoxContainer" instance=ExtResource("12_xxq24")]
-modulate = Color(0.745098, 0.745098, 0.745098, 1)
 layout_mode = 2
 icon = ExtResource("21_3t34p")
 Name = "Волшебный клик"
